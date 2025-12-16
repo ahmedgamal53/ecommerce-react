@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* clerk user */
+
+.cl-avatarBox {
+  width: 3rem;
+  height: 3rem;
+}
+
+.swiper-button-prev {
+  transform: rotate(360deg);
+}
+
+.rotating {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating:hover {
+  animation-play-state: paused;
+}
+
+input {
+  background-color: #ffff;
+  accent-color: red;
+  border: px solid #ccc;
+  color: #333;
+}
+button {
+  transition: all 0.3s;
+}
+button:active {
+  scale: 0.95;
+}
