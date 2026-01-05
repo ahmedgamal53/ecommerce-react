@@ -18,7 +18,7 @@ const Product = () => {
   const [openfilter, setopenfilter] = useState(false);
   const pagehandeler = (selectpage) => {
     setpage(selectpage);
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const filtereddata = data?.filter(
@@ -65,7 +65,7 @@ const Product = () => {
               />
               {filtereddata?.length > 0 ? (
                 <div className="flex justify-center items-center flex-col">
-                  <div className=" grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-7 mt-10 h-max">
+                  <div className="  grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-7 mt-10 h-max">
                     {filtereddata
                       ?.slice(page * 8 - 8, page * 8)
                       .map((product, index) => {

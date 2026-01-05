@@ -63,6 +63,8 @@ const Cart = ({ getlocation, location }) => {
                   >
                     <div className="flex items-center gap-4">
                       <img
+                        loading="lazy"
+                        key={item.id}
                         src={item.images[0]}
                         alt=""
                         className="w-20 h-20 rounded-md"

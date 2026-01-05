@@ -12,8 +12,10 @@ const Productcard = ({ product }) => {
   const navigate = useNavigate();
   const { addtocart } = Carts();
   return (
-    <div className=" w-[200px] sm:w-full border relative border-gray-100 rounded-2xl  hover:scale-105  hover:shadow-2xl transition-all  ">
+    <div className=" w-[170px] sm:w-full border relative border-gray-100 rounded-2xl  hover:scale-105  hover:shadow-2xl transition-all  ">
       <img
+        loading="lazy"
+        key={product.id}
         onClick={() => navigate(`/products/${product.id}`)}
         src={product.images[0]}
         alt=""

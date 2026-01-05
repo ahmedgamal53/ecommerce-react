@@ -3,7 +3,7 @@ import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
-
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
 const Responsemenu = ({ opennav, setopennav }) => {
   const { user } = useUser();
   return (
@@ -80,6 +80,16 @@ const Responsemenu = ({ opennav, setopennav }) => {
               <li>Contact</li>
             </NavLink>
           </ul>
+          {user ? null : (
+            <div className="mt-7">
+              <SignedOut>
+                <SignInButton className="bg-red-500 text-white px-6 w-full py-3 rounded-md cursor-pointer" />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
+          )}
         </nav>
       </div>
     </div>

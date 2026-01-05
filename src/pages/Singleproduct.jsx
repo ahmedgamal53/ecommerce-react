@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import loading from "../assets/src_assets_Loading4.webm";
 import Breadcrumb from "../components/Breadcrumb";
 import { IoCartOutline } from "react-icons/io5";
 import { useData } from "../context/DataContext";
 import Productcard from "../components/Productcard";
 import { Carts } from "../context/CartContent";
+import Review from "../components/Review";
 const Singleproduct = () => {
   const navigate = useNavigate();
   const params = useParams();
@@ -25,10 +26,12 @@ const Singleproduct = () => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     getsingleproduct();
-    window.scrollTo(0, 0);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [params.id]);
 
   useEffect(() => {
@@ -36,7 +39,7 @@ const Singleproduct = () => {
   }, []);
 
   useEffect(() => {
-    if (singleproduct && singleproduct.images) {
+    if (singleproduct?.images?.length) {
       setMainImage(singleproduct.images[0]);
     }
   }, [singleproduct]);
@@ -55,6 +58,7 @@ const Singleproduct = () => {
       <Breadcrumb title={singleproduct.title} />
       <div className="max-w-6xl mx-auto md:p-6  grid md:grid-cols-3 grid-cols-1 gap-2">
         {/* product image */}
+
         <div className="flex justify-center items-center mx-auto md:flex-col gap-2 w-1/2 ">
           {singleproduct.images?.map((item, index) => (
             <div
@@ -62,17 +66,19 @@ const Singleproduct = () => {
               className="w-1/2 cursor-pointer"
               onClick={() => handleImage(item)}
             >
-              <img src={item} alt="" className="" />
+              <img key={item.id} src={item} alt="" className="" />
             </div>
           ))}
         </div>
         <div className="w-1/2 mx-auto  md:w-full mainimage">
           <img
+            key={singleproduct.id}
             src={mainImage}
             alt={singleproduct.title}
             className="rounded-2xl w-full   "
           />
         </div>
+
         {/* product detalis */}
         <div className="flex flex-col items-center  gap-6">
           <h1 className="md:text-3xl font-bold text-gray-800">
@@ -132,6 +138,7 @@ const Singleproduct = () => {
             <div key={index}>
               <div className="m-3  w-[200px] sm:w-[250px] border relative border-gray-100 rounded-2xl  hover:scale-105  hover:shadow-2xl transition-all ">
                 <img
+                  key={product.id}
                   onClick={() => navigate(`/products/${product.id}`)}
                   src={product.images[0]}
                   alt=""
@@ -154,6 +161,14 @@ const Singleproduct = () => {
               </div>
             </div>
           ))}
+      </div>
+      {/* review */}
+      <div>
+        {/* {params.id.map((item) => (
+          <div key={item.id}>
+          </div>
+        ))} */}
+        <Review singleproductid={singleproduct.id} />
       </div>
     </div>
   ) : (

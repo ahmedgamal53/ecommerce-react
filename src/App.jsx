@@ -12,6 +12,7 @@ import Singleproduct from "./pages/Singleproduct";
 import Categoryproduct from "./pages/Categoryproduct";
 import { Carts } from "./context/CartContent";
 import Productroute from "./components/Productroute";
+import Notfound from "./components/Notfound";
 
 const App = () => {
   const [location, setlocation] = useState();
@@ -26,7 +27,6 @@ const App = () => {
         const exactlocation = location.data.address;
         setlocation(exactlocation);
         setopendropdown(false);
-        console.log(exactlocation);
         localStorage.setItem("location", JSON.stringify(exactlocation));
       } catch (error) {
         console.log(error);
@@ -71,6 +71,7 @@ const App = () => {
               </Productroute>
             }
           ></Route>
+          <Route path="*" element={<Notfound />}></Route>
         </Routes>
         <Footer />
       </div>
